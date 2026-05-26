@@ -1,0 +1,8 @@
+#include  "DebugVisual.h"
+
+//∂®“Â
+DebugVisualdata_t tempVisualdata ;
+
+//÷¥––
+AddDebugVisual(&tempVisualdata ,tempval);
+

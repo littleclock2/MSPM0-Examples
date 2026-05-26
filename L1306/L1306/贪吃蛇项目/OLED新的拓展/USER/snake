@@ -1,0 +1,10 @@
+#define MAXLENGTH  100    //蛇的最大长度
+int map[32][12]={0};//地图大小  x,y（一个坐标为4*4个像素点）     实际按4倍尺寸放大后地图大小为128*48个像素点
+int score;            //分数
+bool eated=false;      //蛇吃到食物的标记
+extern u8 KeyValue;        //获取按键值
+struct {       
+int snake_Grid[MAXLENGTH][2];      //二维数组，行坐标表示蛇节点，列表示当前节点的x，y坐标
+int length;    //蛇的长度
+int direction;//蛇的方向
+}snake;                          //定义结构体变量snake

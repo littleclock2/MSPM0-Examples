@@ -1,0 +1,61 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default" --product "mspm0_sdk@1.00.01.03"
+ * @versions {"tool":"1.16.1+2960"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const COMP   = scripting.addModule("/ti/driverlib/COMP", {}, false);
+const COMP1  = COMP.addInstance();
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const VREF   = scripting.addModule("/ti/driverlib/VREF");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+COMP1.$name              = "COMP_0";
+COMP1.terminalSelect     = "DL_COMP_REF_TERMINAL_SELECT_NEG";
+COMP1.enabledInterrupts  = ["DL_COMP_INTERRUPT_OUTPUT_READY"];
+COMP1.controlSelect      = "DL_COMP_DAC_CONTROL_SW";
+COMP1.channelEnable      = ["POS"];
+COMP1.vSource            = "DL_COMP_REF_SOURCE_VDDA_DAC";
+COMP1.setDACCode0        = 0x74;
+COMP1.pubChanID          = 1;
+COMP1.enabledEvents      = ["DL_COMP_EVENT_OUTPUT_EDGE"];
+COMP1.selectOutputFilter = "DL_COMP_FILTER_DELAY_2700";
+
+GPIO1.$name                             = "GPIO_GRP_0";
+GPIO1.associatedPins[0].assignedPort    = "PORTA";
+GPIO1.associatedPins[0].initialValue    = "SET";
+GPIO1.associatedPins[0].ioStructure     = "SD";
+GPIO1.associatedPins[0].$name           = "LED";
+GPIO1.associatedPins[0].assignedPin     = "14";
+GPIO1.associatedPins[0].subChanID       = 1;
+GPIO1.associatedPins[0].subOutputPolicy = "TOGGLE";
+
+SYSCTL.MFCLKEn = true;
+
+VREF.basicIntVolt   = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";
+VREF.checkVREFReady = true;
+VREF.profile        = "INT_2_5_V";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+Board.peripheral.$suggestSolution             = "DEBUGSS";
+Board.peripheral.swclkPin.$suggestSolution    = "PA20";
+Board.peripheral.swdioPin.$suggestSolution    = "PA19";
+COMP1.peripheral.$suggestSolution             = "COMP0";
+COMP1.peripheral.compPinPos0.$suggestSolution = "PA26";
+GPIO1.associatedPins[0].pin.$suggestSolution  = "PA14";
+SYSCTL.peripheral.$suggestSolution            = "SYSCTL";
+VREF.peripheral.$suggestSolution              = "VREF";

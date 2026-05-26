@@ -1,0 +1,39 @@
+#ifndef SPI1_H
+#define SPI1_H
+
+#include "bsp.h"
+
+/* Defines for SPI_1 */
+#define SPI_1_INST SPI1
+#define SPI_1_INST_IRQHandler SPI1_IRQHandler
+#define SPI_1_INST_INT_IRQN SPI1_INT_IRQn
+
+#define GPIO_SPI_1_PICO_PORT GPIOB
+#define GPIO_SPI_1_PICO_PIN DL_GPIO_PIN_8
+#define GPIO_SPI_1_IOMUX_PICO (IOMUX_PINCM25)
+#define GPIO_SPI_1_IOMUX_PICO_FUNC IOMUX_PINCM25_PF_SPI1_PICO
+
+/* GPIO configuration for SPI_1 */
+#define GPIO_SPI_1_SCLK_PORT GPIOB
+#define GPIO_SPI_1_SCLK_PIN DL_GPIO_PIN_9
+#define GPIO_SPI_1_IOMUX_SCLK (IOMUX_PINCM26)
+#define GPIO_SPI_1_IOMUX_SCLK_FUNC IOMUX_PINCM26_PF_SPI1_SCLK
+
+#define GPIO_SPI_1_CS0_PORT GPIOB
+#define GPIO_SPI_1_CS0_PIN DL_GPIO_PIN_6
+#define GPIO_SPI_1_IOMUX_CS0 (IOMUX_PINCM23)
+#define GPIO_SPI_1_IOMUX_CS0_FUNC IOMUX_PINCM23_PF_SPI1_CS0
+
+/* Port definition for Pin Group OLED */
+#define OLED_PORT (GPIOB)
+
+/* Defines for OLED_DC: GPIOB.2 with pinCMx 15 on package	1q pin 50 */
+#define OLED_DC_PIN (DL_GPIO_PIN_1)
+#define OLED_DC_IOMUX (IOMUX_PINCM13)
+
+#define OLED_RES_PIN (DL_GPIO_PIN_7)
+#define OLED_RES_IOMUX (IOMUX_PINCM24)
+
+void SPI1_init(void);
+
+#endif
